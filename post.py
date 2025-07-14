@@ -5,7 +5,7 @@ CHAT_ID   = os.getenv("CHAT_ID")
 TIME      = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
 
 # ↓↓↓ ось саме посилання на gist
-url = "https://gist.githubusercontent.com/Dimon3063/f53bcb68373890e891cd141d1475008b/raw/998479cfef71e05a3a5612e8e6d73578f6e7cd36/post.txt"
+url = f"https://gist.githubusercontent.com/Dimon3063/f53bcb68373890e891cd141d1475008b/raw/post.txt?t={int(datetime.datetime.utcnow().timestamp())}"
 
 text = requests.get(url, timeout=10).text.strip()
 if not text or text.lower() == "skip":
