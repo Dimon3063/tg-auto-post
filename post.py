@@ -4,12 +4,14 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID   = os.getenv("CHAT_ID")
 TIME      = datetime.datetime.utcnow() + datetime.timedelta(hours=3)
 
-MSG = f"""
-🎉 Привіт з GitHub Actions!
-📅 {TIME:%d.%m %H:%M} — тестовий пост від Рейвена
-"""
+# ↓↓↓ ось саме посилання на gist
+url = "https://gist.githubusercontent.com/Dimon3063/f53bcb68373890e891cd141d1475008b/raw/998479cfef71e05a3a5612e8e6d73578f6e7cd36/post.txt"
+
+text = requests.get(url, timeout=10).text.strip()
+if not text or text.lower() == "skip":
+    exit(0)
 
 requests.post(
     f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-    json={"chat_id": CHAT_ID, "text": MSG.strip(), "parse_mode": "HTML"}
+    json={"chat_id": CHAT_ID, "text": text, "parse_mode": "HTML"}
 )
