@@ -2,8 +2,8 @@ name: Auto TG Post
 
 on:
   schedule:
-        - cron: '0 10 * * 1,4'
-  workflow_dispatch:
+    - cron: '0 10 * * 1,4'   # понеділок і четвер о 10:00 UTC
+  workflow_dispatch:          # ручний запуск
 
 jobs:
   send:
